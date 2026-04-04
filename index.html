@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝑿𝑸𝑽𝑰𝑷 中国官网</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+        :root {
+            --primary: #6326d9;
+            --secondary: #225eed;
+            --accent: #ed3a94;
+            --dark-bg: #0c0c18;
+            --card-bg: rgba(28, 28, 48, 0.75);
+            --text-white: #f5f7ff;
+            --text-gray: #c0c6d8;
+            --nav-height: 70px;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--dark-bg);
+            color: var(--text-white);
+        }
+        .bg-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .bg-gradient {
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            top: -20%;
+            left: -20%;
+            background: 
+                radial-gradient(circle at 45% 55%, var(--primary) 0%, transparent 45%),
+                radial-gradient(circle at 25% 75%, var(--secondary) 0%, transparent 45%),
+                radial-gradient(circle at 75% 25%, var(--accent) 0%, transparent 45%);
+            filter: blur(90px);
+            opacity: 0.45;
+            animation: bgFlow 25s infinite linear;
+            transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        @keyframes bgFlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #app {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: calc(100vh - var(--nav-height));
+            overflow: hidden;
+        }
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            transform: translateY(60px) scale(0.92);
+            transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .page.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .page.exit {
+            opacity: 0;
+            transform: translateY(-60px) scale(0.92);
+        }
+        .page-content {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .page-title {
+            font-size: clamp(2.5rem, 8vw, 4.2rem);
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            letter-spacing: 3px;
+            animation: titleIn 0.8s ease-out forwards, gradientMove 3s infinite linear alternate;
+            opacity: 0;
+            transform: translateY(25px);
+        }
+        @keyframes titleIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% center; }
+            100% { background-position: 100% center; }
+        }
+        .content-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            border-radius: 22px;
+            padding: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 22px 65px rgba(0, 0, 0, 0.35);
+            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            animation: cardIn 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+            transform: translateY(25px);
+        }
+        @keyframes cardIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .content-card:hover {
+            transform: translateY(-12px) rotateX(3deg);
+            border-color: rgba(99, 38, 217, 0.65);
+            box-shadow: 0 32px 85px rgba(99, 38, 217, 0.35);
+        }
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 16px 20px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+        .info-item:hover {
+            background: rgba(99, 38, 217, 0.12);
+        }
+        .info-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        .info-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-white);
+            word-break: break-all;
+        }
+        .main-btn {
+            display: inline-block;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 19px 45px;
+            border-radius: 50px;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            background-size: 300% 100%;
+            color: var(--text-white);
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            animation: btnIn 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+            transform: translateY(25px);
+            border: none;
+        }
+        @keyframes btnIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .main-btn:hover {
+            background-position: 100% 0;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px rgba(99, 38, 217, 0.55);
+        }
+        .main-btn:active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            animation: ripple 0.65s ease-out;
+        }
+        @keyframes ripple {
+            to {
+                width: 650px;
+                height: 650px;
+                opacity: 0;
+            }
+        }
+        .price-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .price-now {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--accent);
+        }
+        .price-origin {
+            font-size: 1.6rem;
+            color: var(--text-gray);
+            text-decoration: line-through;
+        }
+        .price-tip {
+            font-size: 1rem;
+            color: var(--text-gray);
+            text-align: center;
+            margin-top: 12px;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background: rgba(12, 12, 24, 0.92);
+            backdrop-filter: blur(25px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 999;
+            padding: 0 12px;
+        }
+        .nav-item {
+            flex: 1;
+            height: 100%;
+            max-width: 130px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: var(--text-gray);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.35s ease;
+        }
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: translateX(-50%);
+            transition: all 0.35s ease;
+            border-radius: 0 0 4px 4px;
+        }
+        .nav-item:hover {
+            color: var(--text-white);
+        }
+        .nav-item.active {
+            color: var(--primary);
+        }
+        .nav-item.active::before {
+            width: 65%;
+        }
+        .nav-icon {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        .nav-text {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        @media (max-width: 768px) {
+            :root { --nav-height: 62px; }
+            .content-card { padding: 28px; }
+            .page-content { gap: 28px; }
+            .price-now { font-size: 2.6rem; }
+            .nav-text { font-size: 0.75rem; }
+            .nav-icon { font-size: 1.3rem; }
+        }
+        @media (max-width: 480px) {
+            .info-value { font-size: 1.05rem; }
+            .main-btn { padding: 16px 32px; font-size: 1.05rem; }
+            .page-title { letter-spacing: 1px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-wrap">
+        <div class="bg-gradient" id="bgGradient"></div>
+    </div>
+    <div id="app">
+        <!-- 下载中心 -->
+        <section class="page active" id="download">
+            <div class="page-content">
+                <h1 class="page-title">𝑿𝑸𝑽𝑰𝑷 资源下载</h1>
+                <div class="content-card">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-label">文件名称</span>
+                            <span class="info-value">XQVIP更新网盘</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">更新时间</span>
+                            <span class="info-value">2026-04-04 22:00</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">文件大小</span>
+                            <span class="info-value">44.69MB</span>
+                        </div>
+                    </div>
+                </div>
+                <a href="https://www.123912.com/s/HzNlVv-YUEQh" target="_blank" class="main-btn">立即下载</a>
+            </div>
+        </section>
+
+        <!-- 购买 -->
+        <section class="page" id="buy">
+            <div class="page-content">
+                <h1 class="page-title">𝑿𝑸𝑽𝑰𝑷 官方购买</h1>
+                <div class="content-card">
+                    <div class="price-wrap">
+                        <span class="price-now">¥45</span>
+                        <span class="price-origin">¥102</span>
+                    </div>
+                    <p class="price-tip">永久卡预售特惠，4月5日10点之后恢复原价</p>
+                </div>
+                <a href="https://ds.xiaoman.top/links/30D2E30A" target="_blank" class="main-btn">立即购买</a>
+            </div>
+        </section>
+
+        <!-- 联系 -->
+        <section class="page" id="contact">
+            <div class="page-content">
+                <h1 class="page-title">𝑿𝑸𝑽𝑰𝑷 官方联系</h1>
+                <div class="content-card">
+                    <div class="info-list">
+                        <div class="info-item">
+                            <span class="info-label">客服QQ</span>
+                            <span class="info-value">2864152869</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">联系邮箱</span>
+                            <span class="info-value">2864152869@qq.com</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">QQ总群</span>
+                            <span class="info-value">624780658</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">QQ备用</span>
+                            <span class="info-value">237675173</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">QQ官方频道</span>
+                            <span class="info-value">ZZZDXLXXXX</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 说明 -->
+        <section class="page" id="project">
+            <div class="page-content">
+                <h1 class="page-title">𝑿𝑸𝑽𝑰𝑷 𝑼𝑳𝑻𝑹𝑨</h1>
+                <div class="content-card">
+                    <p style="text-align:center; font-size:1.5rem; font-weight:600; line-height:1.8;">
+                        本项目所有游戏通用
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 底部常驻导航 -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" data-target="download">
+            <span class="nav-icon">↓</span>
+            <span class="nav-text">下载中心</span>
+        </div>
+        <div class="nav-item" data-target="buy">
+            <span class="nav-icon">¥</span>
+            <span class="nav-text">购买通道</span>
+        </div>
+        <div class="nav-item" data-target="contact">
+            <span class="nav-icon">✉</span>
+            <span class="nav-text">联系我们</span>
+        </div>
+        <div class="nav-item" data-target="project">
+            <span class="nav-icon">◆</span>
+            <span class="nav-text">项目说明</span>
+        </div>
+    </nav>
+
+    <script>
+        const navItems = document.querySelectorAll('.nav-item');
+        const pages = document.querySelectorAll('.page');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetId = item.dataset.target;
+                if (item.classList.contains('active')) return;
+                navItems.forEach(nav => nav.classList.remove('active'));
+                item.classList.add('active');
+                pages.forEach(page => {
+                    if (page.classList.contains('active')) {
+                        page.classList.add('exit');
+                        setTimeout(() => page.classList.remove('active','exit'), 550);
+                    }
+                });
+                setTimeout(() => {
+                    document.getElementById(targetId).classList.add('active');
+                    window.scrollTo(0,0);
+                }, 250);
+            });
+        });
+
+        // 鼠标视差背景
+        const bg = document.getElementById('bgGradient');
+        window.addEventListener('mousemove', e => {
+            const x = e.clientX / innerWidth;
+            const y = e.clientY / innerHeight;
+            bg.style.transform = `translate(${(x-0.5)*50}px, ${(y-0.5)*50}px) rotate(${x*12}deg)`;
+        });
+        window.addEventListener('touchmove', e => {
+            const x = e.touches[0].clientX / innerWidth;
+            const y = e.touches[0].clientY / innerHeight;
+            bg.style.transform = `translate(${(x-0.5)*50}px, ${(y-0.5)*50}px) rotate(${x*12}deg)`;
+        });
+    </script>
+</body>
+</html>
