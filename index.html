@@ -3,32 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𝑿𝑸𝑽𝑰𝑷 中国官网</title>
+    <title>𝑿𝑸𝑽𝑰𝑷 — 极致体验</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
         }
+
         :root {
-            --primary: #6326d9;
-            --secondary: #225eed;
-            --accent: #ed3a94;
-            --dark-bg: #0c0c18;
-            --card-bg: rgba(28, 28, 48, 0.75);
-            --text-white: #f5f7ff;
-            --text-gray: #c0c6d8;
-            --nav-height: 70px;
+            --primary: #8b5cf6;
+            --primary-glow: rgba(139, 92, 246, 0.5);
+            --secondary: #ec4899;
+            --secondary-glow: rgba(236, 72, 153, 0.5);
+            --accent: #06b6d4;
+            --accent-glow: rgba(6, 182, 212, 0.5);
+            --bg-deep: #030307;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.6);
+            --text-accent: #a78bfa;
+            --nav-height: 80px;
         }
+
         html, body {
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background: var(--dark-bg);
-            color: var(--text-white);
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
-        .bg-wrap {
+
+        /* 动态背景层 */
+        .universe {
             position: fixed;
             top: 0;
             left: 0;
@@ -36,26 +49,106 @@
             height: 100%;
             z-index: 0;
             overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
         }
-        .bg-gradient {
+
+        .stars {
             position: absolute;
-            width: 140%;
-            height: 140%;
-            top: -20%;
-            left: -20%;
-            background: 
-                radial-gradient(circle at 45% 55%, var(--primary) 0%, transparent 45%),
-                radial-gradient(circle at 25% 75%, var(--secondary) 0%, transparent 45%),
-                radial-gradient(circle at 75% 25%, var(--accent) 0%, transparent 45%);
-            filter: blur(90px);
-            opacity: 0.45;
-            animation: bgFlow 25s infinite linear;
-            transition: all 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.3;
+            animation: twinkle 4s ease-in-out infinite;
         }
-        @keyframes bgFlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.5; }
         }
+
+        /* 流体渐变光球 */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            will-change: transform;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            top: -200px;
+            left: -100px;
+            animation: float1 20s infinite ease-in-out;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            bottom: -150px;
+            right: -100px;
+            animation: float2 20s infinite ease-in-out;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: float3 20s infinite ease-in-out;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -50px) scale(1.1); }
+            50% { transform: translate(-30px, 30px) scale(0.9); }
+            75% { transform: translate(30px, 50px) scale(1.05); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(-40px, 40px) scale(1.05); }
+            50% { transform: translate(50px, -30px) scale(0.95); }
+            75% { transform: translate(-20px, -40px) scale(1.1); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            25% { transform: translate(-40%, -60%) scale(1.08); }
+            50% { transform: translate(-60%, -40%) scale(0.92); }
+            75% { transform: translate(-45%, -55%) scale(1.03); }
+        }
+
+        /* 网格叠加 */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 100px 100px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+        }
+
+        /* 主应用容器 */
         #app {
             position: relative;
             z-index: 1;
@@ -63,6 +156,8 @@
             height: calc(100vh - var(--nav-height));
             overflow: hidden;
         }
+
+        /* 页面切换系统 */
         .page {
             position: absolute;
             top: 0;
@@ -72,393 +167,998 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 24px;
+            padding: 40px 24px;
             opacity: 0;
-            transform: translateY(60px) scale(0.92);
-            transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: perspective(1000px) rotateX(10deg) translateY(50px) scale(0.95);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            will-change: transform, opacity;
         }
+
         .page.active {
             display: flex;
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+            pointer-events: all;
         }
+
         .page.exit {
             opacity: 0;
-            transform: translateY(-60px) scale(0.92);
+            transform: perspective(1000px) rotateX(-10deg) translateY(-50px) scale(0.95);
         }
+
         .page-content {
             width: 100%;
-            max-width: 1000px;
+            max-width: 680px;
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            align-items: center;
+            gap: 32px;
         }
-        .page-title {
-            font-size: clamp(2.5rem, 8vw, 4.2rem);
-            font-weight: 900;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
-            background-size: 200% auto;
+
+        /* 标题样式 - 霓虹渐变 */
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            position: relative;
+            animation: titleReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+            will-change: transform, opacity;
+        }
+
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, var(--text-accent) 50%, var(--secondary) 100%);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-align: center;
-            letter-spacing: 3px;
-            animation: titleIn 0.8s ease-out forwards, gradientMove 3s infinite linear alternate;
-            opacity: 0;
-            transform: translateY(25px);
+            animation: gradientShift 8s ease infinite;
         }
-        @keyframes titleIn {
+
+        .hero-title .subtitle {
+            display: block;
+            font-size: 0.4em;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        @keyframes titleReveal {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        @keyframes gradientMove {
-            0% { background-position: 0% center; }
-            100% { background-position: 100% center; }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
-        .content-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(25px);
-            border-radius: 22px;
-            padding: 42px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 22px 65px rgba(0, 0, 0, 0.35);
-            transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-            animation: cardIn 0.8s ease-out 0.2s forwards;
-            opacity: 0;
-            transform: translateY(25px);
-        }
-        @keyframes cardIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .content-card:hover {
-            transform: translateY(-12px) rotateX(3deg);
-            border-color: rgba(99, 38, 217, 0.65);
-            box-shadow: 0 32px 85px rgba(99, 38, 217, 0.35);
-        }
-        .info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 22px;
-        }
-        .info-item {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding: 16px 20px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.03);
-            transition: all 0.3s ease;
-        }
-        .info-item:hover {
-            background: rgba(99, 38, 217, 0.12);
-        }
-        .info-label {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-        .info-value {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-white);
-            word-break: break-all;
-        }
-        .main-btn {
-            display: inline-block;
+
+        /* 玻璃卡片 - 高级版本 */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 32px;
             width: 100%;
-            max-width: 420px;
-            margin: 0 auto;
-            padding: 19px 45px;
-            border-radius: 50px;
-            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
-            background-size: 300% 100%;
-            color: var(--text-white);
-            font-size: 1.25rem;
-            font-weight: 700;
-            text-align: center;
-            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            animation: cardFloat 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            will-change: transform, opacity;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .glass-card:hover::after {
+            opacity: 0.3;
+        }
+
+        @keyframes cardFloat {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 信息列表 */
+        .info-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
-            animation: btnIn 0.8s ease-out 0.4s forwards;
-            opacity: 0;
-            transform: translateY(25px);
-            border: none;
         }
-        @keyframes btnIn {
+
+        .info-row::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .info-row:hover {
+            transform: translateX(8px);
+            border-color: rgba(139, 92, 246, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .info-row:hover::before {
+            opacity: 1;
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-label svg {
+            width: 16px;
+            height: 16px;
+            opacity: 0.6;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'Inter', monospace;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-left: 8px;
+        }
+
+        .badge-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .badge-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 主按钮 - 霓虹效果 */
+        .cta-button {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px 40px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.125rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: buttonReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            opacity: 0;
+            transform: translateY(30px);
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 10px 40px -10px var(--primary-glow);
+            will-change: transform, opacity;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+                0 20px 60px -15px var(--primary-glow);
+        }
+
+        .cta-button:hover::before {
+            transform: translateX(100%);
+        }
+
+        .cta-button:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        .cta-button svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover svg {
+            transform: translateX(4px);
+        }
+
+        @keyframes buttonReveal {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        .main-btn:hover {
-            background-position: 100% 0;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 35px rgba(99, 38, 217, 0.55);
-        }
-        .main-btn:active::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            animation: ripple 0.65s ease-out;
-        }
-        @keyframes ripple {
-            to {
-                width: 650px;
-                height: 650px;
-                opacity: 0;
-            }
-        }
-        .price-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        .price-now {
-            font-size: 3.2rem;
-            font-weight: 900;
-            color: var(--accent);
-        }
-        .price-origin {
-            font-size: 1.6rem;
-            color: var(--text-gray);
-            text-decoration: line-through;
-        }
-        .price-tip {
-            font-size: 1rem;
-            color: var(--text-gray);
-            text-align: center;
-            margin-top: 12px;
-        }
-        .bottom-nav {
+
+        /* 底部导航 - 悬浮Dock风格 */
+        .dock {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: var(--nav-height);
-            background: rgba(12, 12, 24, 0.92);
-            backdrop-filter: blur(25px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 999;
-            padding: 0 12px;
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
         }
-        .nav-item {
-            flex: 1;
-            height: 100%;
-            max-width: 130px;
+
+        .dock-item {
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            color: var(--text-gray);
+            padding: 16px 24px;
+            min-width: 80px;
+            border-radius: 16px;
+            color: var(--text-secondary);
             cursor: pointer;
-            position: relative;
-            transition: all 0.35s ease;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            background: transparent;
+            border: none;
+            font-family: inherit;
         }
-        .nav-item::before {
+
+        .dock-item::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 50%;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            transform: translateX(-50%);
-            transition: all 0.35s ease;
-            border-radius: 0 0 4px 4px;
+            inset: 0;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        .nav-item:hover {
-            color: var(--text-white);
+
+        .dock-item:hover {
+            color: var(--text-primary);
+            transform: translateY(-4px);
         }
-        .nav-item.active {
-            color: var(--primary);
+
+        .dock-item:hover::before {
+            opacity: 1;
         }
-        .nav-item.active::before {
-            width: 65%;
+
+        .dock-item.active {
+            color: white;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 10px 30px -10px var(--primary-glow);
         }
-        .nav-icon {
-            font-size: 1.6rem;
+
+        .dock-item.active::before {
+            display: none;
+        }
+
+        .dock-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+            transition: transform 0.3s;
+        }
+
+        .dock-item:hover .dock-icon {
+            transform: scale(1.2);
+        }
+
+        .dock-label {
+            font-size: 0.75rem;
             font-weight: 600;
+            letter-spacing: 0.02em;
         }
-        .nav-text {
-            font-size: 0.85rem;
-            font-weight: 500;
+
+        /* 装饰元素 */
+        .glow-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+            opacity: 0.5;
         }
-        @media (max-width: 768px) {
-            :root { --nav-height: 62px; }
-            .content-card { padding: 28px; }
-            .page-content { gap: 28px; }
-            .price-now { font-size: 2.6rem; }
-            .nav-text { font-size: 0.75rem; }
-            .nav-icon { font-size: 1.3rem; }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            :root { --nav-height: 100px; }
+
+            .dock {
+                bottom: 16px;
+                padding: 8px;
+                gap: 4px;
+                width: calc(100% - 32px);
+                max-width: 400px;
+            }
+
+            .dock-item {
+                padding: 12px 16px;
+                min-width: 0;
+                flex: 1;
+            }
+
+            .dock-label {
+                font-size: 0.7rem;
+            }
+
+            .glass-card {
+                padding: 24px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .page {
+                padding: 20px 16px;
+            }
+
+            .page-content {
+                gap: 24px;
+            }
+
+            .qq-group-card {
+                padding: 16px 20px;
+            }
+
+            .qq-group-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .qq-group-name {
+                font-size: 1rem;
+            }
         }
-        @media (max-width: 480px) {
-            .info-value { font-size: 1.05rem; }
-            .main-btn { padding: 16px 32px; font-size: 1.05rem; }
-            .page-title { letter-spacing: 1px; }
+
+        /* 特殊效果 - 扫描线 */
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.3;
+        }
+
+        /* 粒子效果容器 */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* QQ群卡片样式 */
+        .qq-group-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .qq-group-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: cardFloat 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+            opacity: 0;
+            transform: translateY(40px);
+            will-change: transform, opacity;
+        }
+
+        .qq-group-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .qq-group-card:hover::before {
+            opacity: 1;
+        }
+
+        .qq-group-card.primary {
+            border-color: rgba(139, 92, 246, 0.4);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.2);
+        }
+
+        .qq-group-card.primary:hover {
+            border-color: rgba(139, 92, 246, 0.8);
+            box-shadow: 0 12px 40px rgba(139, 92, 246, 0.4);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .qq-group-card.secondary {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .qq-group-card.secondary:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px) scale(1.02);
+        }
+
+        .qq-group-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            flex-shrink: 0;
+        }
+
+        .qq-group-card.primary .qq-group-icon {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            box-shadow: 0 4px 20px var(--primary-glow);
+        }
+
+        .qq-group-card.secondary .qq-group-icon {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .qq-group-icon svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+        }
+
+        .qq-group-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .qq-group-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .qq-group-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .qq-group-card.primary .qq-group-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 4px 15px var(--primary-glow);
+        }
+
+        .qq-group-card.secondary .qq-group-badge {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .qq-group-arrow {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .qq-group-card:hover .qq-group-arrow {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(4px);
+        }
+
+        .qq-group-arrow svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-secondary);
+        }
+
+        .qq-group-card:hover .qq-group-arrow svg {
+            color: var(--text-primary);
+        }
+
+        /* 减少动画偏好 */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bg-wrap">
-        <div class="bg-gradient" id="bgGradient"></div>
+    <!-- 宇宙背景 -->
+    <div class="universe">
+        <div class="stars"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
     </div>
+
+    <div class="scanline"></div>
+    <canvas id="particles"></canvas>
+
+    <!-- 主应用 -->
     <div id="app">
         <!-- 下载中心 -->
         <section class="page active" id="download">
+            <div class="glow-orb" style="top: 20%; left: 10%;"></div>
             <div class="page-content">
-                <h1 class="page-title">𝑿𝑸𝑽𝑰𝑷 资源下载</h1>
-                <div class="content-card">
-                    <div class="info-list">
-                        <div class="info-item">
-                            <span class="info-label">文件名称</span>
-                            <span class="info-value">XQVIP更新网盘</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">更新时间</span>
-                            <span class="info-value">2026-04-04 22:00</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">文件大小</span>
-                            <span class="info-value">44.69MB</span>
+                <h1 class="hero-title">
+                    <span class="gradient-text">𝑿𝑸𝑽𝑰𝑷</span>
+                    <span class="subtitle">资源下载中心</span>
+                </h1>
+
+                <div class="glass-card">
+                    <div class="info-grid">
+                        <div class="info-row">
+                            <span class="info-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                    <polyline points="13 2 13 9 20 9"></polyline>
+                                </svg>
+                                文件名称
+                            </span>
+                            <span class="info-value">XQVIP 更新网盘</span>
                         </div>
                     </div>
                 </div>
-                <a href="https://www.123912.com/s/HzNlVv-YUEQh" target="_blank" class="main-btn">立即下载</a>
+
+                <a href="https://www.123684.com/s/HzNlVv-PlEQh" target="_blank" rel="noopener noreferrer" class="cta-button">
+                    <span>立即下载</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <polyline points="19 12 12 19 5 12"></polyline>
+                    </svg>
+                </a>
             </div>
         </section>
 
         <!-- 购买 -->
         <section class="page" id="buy">
+            <div class="glow-orb" style="bottom: 20%; right: 10%;"></div>
             <div class="page-content">
-                <h1 class="page-title">𝑿𝑸𝑽𝑰𝑷 官方购买</h1>
-                <div class="content-card">
-                    <div class="price-wrap">
-                        <span class="price-now">¥45</span>
-                        <span class="price-origin">¥102</span>
-                    </div>
-                    <p class="price-tip">永久卡预售特惠，4月5日10点之后恢复原价</p>
+                <h1 class="hero-title">
+                    <span class="gradient-text">购买通道</span>
+                    <span class="subtitle">Official Purchase</span>
+                </h1>
+
+                <div class="glass-card" style="text-align: center; padding: 48px 32px;">
+                    <p style="color: var(--text-secondary); font-size: 1.125rem; line-height: 1.8;">
+                        获取完整版访问权限<br>
+                        <span style="color: var(--text-accent); font-weight: 600;">永久授权 · 全游戏通用</span>
+                    </p>
                 </div>
-                <a href="https://ds.xiaoman.top/links/30D2E30A" target="_blank" class="main-btn">立即购买</a>
+
+                <a href="https://ds.xiaoman.top/links/30D2E30A" target="_blank" rel="noopener noreferrer" class="cta-button">
+                    <span>立即购买</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                </a>
             </div>
         </section>
 
         <!-- 联系 -->
         <section class="page" id="contact">
+            <div class="glow-orb" style="top: 30%; right: 20%;"></div>
             <div class="page-content">
-                <h1 class="page-title">𝑿𝑸𝑽𝑰𝑷 官方联系</h1>
-                <div class="content-card">
-                    <div class="info-list">
-                        <div class="info-item">
-                            <span class="info-label">客服QQ</span>
+                <h1 class="hero-title">
+                    <span class="gradient-text">官方联系</span>
+                    <span class="subtitle">Get in Touch</span>
+                </h1>
+
+                <div class="glass-card">
+                    <div class="info-grid">
+                        <div class="info-row">
+                            <span class="info-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                客服 QQ
+                            </span>
                             <span class="info-value">2864152869</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">联系邮箱</span>
+
+                        <div class="info-row">
+                            <span class="info-label">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                联系邮箱
+                            </span>
                             <span class="info-value">2864152869@qq.com</span>
                         </div>
-                        <div class="info-item">
-                            <span class="info-label">QQ总群</span>
-                            <span class="info-value">624780658</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">QQ备用</span>
-                            <span class="info-value">237675173</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">QQ官方频道</span>
-                            <span class="info-value">ZZZDXLXXXX</span>
-                        </div>
                     </div>
+                </div>
+
+                <!-- QQ群卡片 -->
+                <div class="qq-group-cards">
+                    <a href="https://ti.qq.com/new_open_qq/index.html?appid=64&url=mqqapi%3A%2F%2Fgroup%2Fjoin_troop%3Fsrctype%3Dinternal%26version%3D1%26troop_uin%3D624780658%26subsource_id%3D1030%26is_need_jump_aio%3D1" target="_blank" rel="noopener noreferrer" class="qq-group-card primary">
+                        <div class="qq-group-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="qq-group-info">
+                            <span class="qq-group-name">QQ 一群</span>
+                            <span class="qq-group-badge">主群</span>
+                        </div>
+                        <div class="qq-group-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="https://ti.qq.com/new_open_qq/index.html?appid=64&url=mqqapi%3A%2F%2Fgroup%2Fjoin_troop%3Fsrctype%3Dinternal%26version%3D1%26troop_uin%3D237675173%26subsource_id%3D1030%26is_need_jump_aio%3D1" target="_blank" rel="noopener noreferrer" class="qq-group-card secondary">
+                        <div class="qq-group-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="qq-group-info">
+                            <span class="qq-group-name">QQ 二群</span>
+                            <span class="qq-group-badge">备用</span>
+                        </div>
+                        <div class="qq-group-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- 说明 -->
+        <!-- 项目说明 -->
         <section class="page" id="project">
+            <div class="glow-orb" style="bottom: 30%; left: 15%;"></div>
             <div class="page-content">
-                <h1 class="page-title">𝑿𝑸𝑽𝑰𝑷 𝑼𝑳𝑻𝑹𝑨</h1>
-                <div class="content-card">
-                    <p style="text-align:center; font-size:1.5rem; font-weight:600; line-height:1.8;">
-                        本项目所有游戏通用
+                <h1 class="hero-title">
+                    <span class="gradient-text">𝑼𝑳𝑻𝑹𝑨</span>
+                    <span class="subtitle">Project Introduction</span>
+                </h1>
+
+                <div class="glass-card" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 24px;">◆</div>
+                    <p style="color: var(--text-primary); font-size: 1.25rem; font-weight: 600; line-height: 1.8; margin-bottom: 16px;">
+                        全游戏通用解决方案
                     </p>
+                    <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
+                        本项目支持所有主流游戏平台<br>
+                        提供稳定、安全、高效的服务体验
+                    </p>
+                </div>
+
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <span class="badge badge-primary">稳定运行</span>
+                    <span class="badge badge-secondary">安全无毒</span>
+                    <span class="badge badge-primary">持续更新</span>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- 底部常驻导航 -->
-    <nav class="bottom-nav">
-        <div class="nav-item active" data-target="download">
-            <span class="nav-icon">↓</span>
-            <span class="nav-text">下载中心</span>
-        </div>
-        <div class="nav-item" data-target="buy">
-            <span class="nav-icon">¥</span>
-            <span class="nav-text">购买通道</span>
-        </div>
-        <div class="nav-item" data-target="contact">
-            <span class="nav-icon">✉</span>
-            <span class="nav-text">联系我们</span>
-        </div>
-        <div class="nav-item" data-target="project">
-            <span class="nav-icon">◆</span>
-            <span class="nav-text">项目说明</span>
-        </div>
+    <!-- Dock 导航 -->
+    <nav class="dock">
+        <button class="dock-item active" data-target="download" aria-label="下载">
+            <span class="dock-icon">↓</span>
+            <span class="dock-label">下载</span>
+        </button>
+        <button class="dock-item" data-target="buy" aria-label="购买">
+            <span class="dock-icon">¥</span>
+            <span class="dock-label">购买</span>
+        </button>
+        <button class="dock-item" data-target="contact" aria-label="联系">
+            <span class="dock-icon">✉</span>
+            <span class="dock-label">联系</span>
+        </button>
+        <button class="dock-item" data-target="project" aria-label="说明">
+            <span class="dock-icon">◆</span>
+            <span class="dock-label">说明</span>
+        </button>
     </nav>
 
     <script>
-        const navItems = document.querySelectorAll('.nav-item');
-        const pages = document.querySelectorAll('.page');
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const targetId = item.dataset.target;
-                if (item.classList.contains('active')) return;
-                navItems.forEach(nav => nav.classList.remove('active'));
-                item.classList.add('active');
-                pages.forEach(page => {
-                    if (page.classList.contains('active')) {
-                        page.classList.add('exit');
-                        setTimeout(() => page.classList.remove('active','exit'), 550);
+        // 页面切换系统 - 修复版
+        (function() {
+            const dockItems = document.querySelectorAll('.dock-item');
+            const pages = document.querySelectorAll('.page');
+            let isTransitioning = false;
+
+            dockItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (isTransitioning) return;
+
+                    const targetId = item.dataset.target;
+                    if (item.classList.contains('active')) return;
+
+                    isTransitioning = true;
+
+                    // 切换导航状态
+                    dockItems.forEach(nav => nav.classList.remove('active'));
+                    item.classList.add('active');
+
+                    // 找到当前活动的页面
+                    const currentPage = document.querySelector('.page.active');
+                    const targetPage = document.getElementById(targetId);
+
+                    if (currentPage) {
+                        // 当前页面退出动画
+                        currentPage.classList.add('exit');
+
+                        setTimeout(() => {
+                            currentPage.classList.remove('active', 'exit');
+                            // 新页面进入
+                            targetPage.classList.add('active');
+                            isTransitioning = false;
+                        }, 400);
+                    } else {
+                        targetPage.classList.add('active');
+                        isTransitioning = false;
                     }
                 });
-                setTimeout(() => {
-                    document.getElementById(targetId).classList.add('active');
-                    window.scrollTo(0,0);
-                }, 250);
             });
-        });
+        })();
 
-        // 鼠标视差背景
-        const bg = document.getElementById('bgGradient');
-        window.addEventListener('mousemove', e => {
-            const x = e.clientX / innerWidth;
-            const y = e.clientY / innerHeight;
-            bg.style.transform = `translate(${(x-0.5)*50}px, ${(y-0.5)*50}px) rotate(${x*12}deg)`;
-        });
-        window.addEventListener('touchmove', e => {
-            const x = e.touches[0].clientX / innerWidth;
-            const y = e.touches[0].clientY / innerHeight;
-            bg.style.transform = `translate(${(x-0.5)*50}px, ${(y-0.5)*50}px) rotate(${x*12}deg)`;
-        });
+        // 鼠标视差效果 - 节流优化版
+        (function() {
+            const orbs = document.querySelectorAll('.orb');
+            let ticking = false;
+            let lastX = 0.5;
+            let lastY = 0.5;
+
+            document.addEventListener('mousemove', (e) => {
+                lastX = e.clientX / window.innerWidth;
+                lastY = e.clientY / window.innerHeight;
+
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        orbs.forEach((orb, index) => {
+                            const speed = (index + 1) * 20;
+                            const xOffset = (lastX - 0.5) * speed;
+                            const yOffset = (lastY - 0.5) * speed;
+                            orb.style.transform = `translate(${xOffset}px, ${yOffset}px) scale(${1 + index * 0.1})`;
+                        });
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        })();
+
+        // 粒子效果 - 性能优化版
+        (function() {
+            const canvas = document.getElementById('particles');
+            if (!canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animationId = null;
+            let isVisible = true;
+
+            // 检测页面可见性
+            document.addEventListener('visibilitychange', () => {
+                isVisible = !document.hidden;
+                if (isVisible && !animationId) {
+                    animateParticles();
+                }
+            });
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resizeCanvas();
+
+            // 防抖resize
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(resizeCanvas, 100);
+            });
+
+            // 根据屏幕大小调整粒子数量
+            const isMobile = window.matchMedia('(pointer: coarse)').matches;
+            const particleCount = isMobile ? 25 : 50;
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.speedY = (Math.random() - 0.5) * 0.5;
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.y > canvas.height) this.y = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                }
+
+                draw() {
+                    ctx.fillStyle = `rgba(139, 92, 246, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            let frameCount = 0;
+            function animateParticles() {
+                if (!isVisible) {
+                    animationId = null;
+                    return;
+                }
+
+                animationId = requestAnimationFrame(animateParticles);
+
+                // 每2帧渲染一次以提高性能
+                frameCount++;
+                if (frameCount % 2 !== 0) return;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+            }
+
+            initParticles();
+            animateParticles();
+        })();
     </script>
 </body>
 </html>
